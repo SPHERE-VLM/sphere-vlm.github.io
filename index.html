@@ -17,11 +17,14 @@
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="./static/css/leaderboard.css">
 
+  <script type="text/javascript" src="static/js/sort-table.js" defer></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/leaderboard_testmini.js"></script>
   <script src="./static/js/index.js"></script>
 </head>
 <body>
@@ -194,6 +197,441 @@
 </section>
 
 
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    updateRowNumbers();
+    document.querySelector("#results").addEventListener("click", updateRowNumbers);
+  });
+
+  function updateRowNumbers() {
+    const rows = document.querySelectorAll("#results tbody tr");
+    rows.forEach((row, index) => {
+      row.querySelector("td").innerText = index + 1;
+    });
+  }
+</script>
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+      <div class="column">
+
+        <h2 class="title is-3" id="leaderboard">Leaderboard</h2>
+        <div class="content">
+          <p class="mt-3">
+            The leaderboard is sorted by overall performance by default. Click on the corresponding cell to sort by another column.
+          </p>
+          <p>
+            <b>Single-Skill</b> tasks include Position, Counting, Distance, and Size.
+          </p>
+          <p>
+            <b>Multi-Skill</b> tasks include Position + Counting, Distance + Counting, and Distance + Size.
+          </p>
+          <p>
+            <b>Reasoning</b> tasks include Object occlusion and Object manipulation.
+          </p>
+
+          <table class="js-sort-table" id="results" style="margin-left: auto; margin-right: auto;">
+            <thead>
+              <tr>
+                <th rowspan="2" class="no-sort" style="vertical-align: middle; width: 50px;" data-js-sort-colNum="none"><strong>#</strong></th>
+                <th rowspan="2" class="no-sort" style="vertical-align: middle; width: 180px;" data-js-sort-colNum="none"><strong>Model</strong></th>
+                <th rowspan="2" class="no-sort" style="vertical-align: middle; width: 50px;" data-js-sort-colNum="none"><strong>Params</strong></th>
+                <th colspan="4" style="vertical-align: middle; width: 400px;" data-js-sort-colNum="4"><strong>Single-Skill</strong></th>
+                <th colspan="3" style="vertical-align: middle; width: 300px;" data-js-sort-colNum="8"><strong>Multi-Skill</strong></th>
+                <th colspan="2" style="vertical-align: middle; width: 200px;" data-js-sort-colNum="11"><strong>Reasoning</strong></th>
+                <th colspan="1" style="vertical-align: middle; width: 100px;" data-js-sort-colNum="13"><strong>Overall</strong></th>
+              </tr>
+              <tr>
+                <th data-js-sort-colNum="3"><strong>Pos.</strong></th>
+                <th data-js-sort-colNum="4"><strong>Count.</strong></th>
+                <th data-js-sort-colNum="5"><strong>Dist.</strong></th>
+                <th data-js-sort-colNum="6"><strong>Size</strong></th>
+                <th data-js-sort-colNum="7"><strong>P+C</strong></th>
+                <th data-js-sort-colNum="8"><strong>D+C</strong></th>
+                <th data-js-sort-colNum="9"><strong>D+S</strong></th>
+                <th data-js-sort-colNum="10"><strong>Occl.</strong></th>
+                <th data-js-sort-colNum="11"><strong>Manip.</strong></th>
+                <th data-js-sort-colNum="12"><strong>Avg</strong></th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="vertical-align: middle; text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a href="https://huggingface.co/RussRobin/SpatialBot-3B" class="ext-link" style="font-size: 16px; margin-left: 5px;">SpatialBot-RGB</a>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">3B</td>
+                <td style="vertical-align: middle;">55.9</td>
+                <td style="vertical-align: middle;">67.7</td>
+                <td style="vertical-align: middle;">52.8</td>
+                <td style="vertical-align: middle;">73.0</td>
+                <td style="vertical-align: middle;">38.5</td>
+                <td style="vertical-align: middle;">39.2</td>
+                <td style="vertical-align: middle;">38.7</td>
+                <td style="vertical-align: middle;">57.6</td>
+                <td style="vertical-align: middle;">60.3</td>
+                <td style="vertical-align: middle;">53.6</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="vertical-align: middle; text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a href="https://huggingface.co/RussRobin/SpatialBot-3B" class="ext-link" style="font-size: 16px; margin-left: 5px;">SpatialBot</a>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">3B</td>
+                <td style="vertical-align: middle;">55.5</td>
+                <td style="vertical-align: middle;">72.1</td>
+                <td style="vertical-align: middle;">51.9</td>
+                <td style="vertical-align: middle;">75.4</td>
+                <td style="vertical-align: middle;">39.1</td>
+                <td style="vertical-align: middle;">36.1</td>
+                <td style="vertical-align: middle;">38.9</td>
+                <td style="vertical-align: middle;">56.5</td>
+                <td style="vertical-align: middle;">54.6</td>
+                <td style="vertical-align: middle;">53.1</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="vertical-align: middle; text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a href="https://huggingface.co/microsoft/Phi-3.5-vision-instruct" class="ext-link" style="font-size: 16px; margin-left: 5px;">Phi-3.5-Vision</a>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">4B</td>
+                <td style="vertical-align: middle;">61.8</td>
+                <td style="vertical-align: middle;">58.7</td>
+                <td style="vertical-align: middle;">56.7</td>
+                <td style="vertical-align: middle;">76.0</td>
+                <td style="vertical-align: middle;">44.4</td>
+                <td style="vertical-align: middle;">36.1</td>
+                <td style="vertical-align: middle;">47.2</td>
+                <td style="vertical-align: middle;">54.4</td>
+                <td style="vertical-align: middle;">55.5</td>
+                <td style="vertical-align: middle;">54.3</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="vertical-align: middle;text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a href="https://huggingface.co/llava-hf/llava-v1.6-vicuna-7b-hf" class="ext-link" style="font-size: 16px; margin-left: 5px;">LLaVA-NeXT</a>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">7B</td>
+                <td style="vertical-align: middle;">53.6</td>
+                <td style="vertical-align: middle;">68.7</td>
+                <td style="vertical-align: middle;">54.5</td>
+                <td style="vertical-align: middle;">70.9</td>
+                <td style="vertical-align: middle;">42.0</td>
+                <td style="vertical-align: middle;">35.4</td>
+                <td style="vertical-align: middle;">36.1</td>
+                <td style="vertical-align: middle;">48.7</td>
+                <td style="vertical-align: middle;">49.1</td>
+                <td style="vertical-align: middle;">50.6</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="vertical-align: middle; text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a href="https://huggingface.co/docs/transformers/en/model_doc/llava_onevision" class="ext-link" style="font-size: 16px; margin-left: 5px;">LLaVA-OneVision</a>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">7B</td>
+                <td style="vertical-align: middle;">60.2</td>
+                <td style="vertical-align: middle;">76.1</td>
+                <td style="vertical-align: middle;">64.2</td>
+                <td style="vertical-align: middle;">84.0</td>
+                <td style="vertical-align: middle;">53.3</td>
+                <td style="vertical-align: middle;">53.8</td>
+                <td style="vertical-align: middle;">52.9</td>
+                <td style="vertical-align: middle;">53.0</td>
+                <td style="vertical-align: middle;">59.6</td>
+                <td style="vertical-align: middle;">61.5</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="vertical-align: middle; text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a href="https://huggingface.co/Qwen/Qwen2-VL-7B-Instruct" class="ext-link" style="font-size: 16px; margin-left: 5px;">Qwen2-VL</a>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">7B</td>
+                <td style="vertical-align: middle;">63.2</td>
+                <td style="vertical-align: middle;">74.1</td>
+                <td style="vertical-align: middle;">53.0</td>
+                <td style="vertical-align: middle;">78.6</td>
+                <td style="vertical-align: middle;">36.1</td>
+                <td style="vertical-align: middle;">33.5</td>
+                <td style="vertical-align: middle;">50.8</td>
+                <td style="vertical-align: middle;">54.0</td>
+                <td style="vertical-align: middle;">55.2</td>
+                <td style="vertical-align: middle;">55.0</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="vertical-align: middle; text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a href="https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct" class="ext-link" style="font-size: 16px; margin-left: 5px;">Qwen2.5-VL</a>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">7B</td>
+                <td style="vertical-align: middle;">59.3</td>
+                <td style="vertical-align: middle;">82.1</td>
+                <td style="vertical-align: middle;">58.9</td>
+                <td style="vertical-align: middle;">73.6</td>
+                <td style="vertical-align: middle;">44.7</td>
+                <td style="vertical-align: middle;">31.6</td>
+                <td style="vertical-align: middle;">37.9</td>
+                <td style="vertical-align: middle;">48.7</td>
+                <td style="vertical-align: middle;">54.1</td>
+                <td style="vertical-align: middle;">54.1</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="vertical-align: middle; text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a href="https://huggingface.co/deepseek-ai/Janus-Pro-7B" class="ext-link" style="font-size: 16px; margin-left: 5px;">Janus-Pro</a>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">7B</td>
+                <td style="vertical-align: middle;">57.1</td>
+                <td style="vertical-align: middle;">70.6</td>
+                <td style="vertical-align: middle;">59.3</td>
+                <td style="vertical-align: middle;">76.5</td>
+                <td style="vertical-align: middle;">37.3</td>
+                <td style="vertical-align: middle;">33.5</td>
+                <td style="vertical-align: middle;">46.8</td>
+                <td style="vertical-align: middle;">53.5</td>
+                <td style="vertical-align: middle;">54.3</td>
+                <td style="vertical-align: middle;">54.0</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="vertical-align: middle; text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a href="https://huggingface.co/remyxai/SpaceMantis" class="ext-link" style="font-size: 16px; margin-left: 5px;">SpaceMantis</a>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">8B</td>
+                <td style="vertical-align: middle;">52.7</td>
+                <td style="vertical-align: middle;">52.7</td>
+                <td style="vertical-align: middle;">57.0</td>
+                <td style="vertical-align: middle;">63.1</td>
+                <td style="vertical-align: middle;">28.4</td>
+                <td style="vertical-align: middle;">43.7</td>
+                <td style="vertical-align: middle;">45.6</td>
+                <td style="vertical-align: middle;">56.6</td>
+                <td style="vertical-align: middle;">54.2</td>
+                <td style="vertical-align: middle;">50.4</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="vertical-align: middle; text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a href="https://github.com/AnjieCheng/SpatialRGPT" class="ext-link" style="font-size: 16px; margin-left: 5px;">SpatialRGPT-RGB</a>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">8B</td>
+                <td style="vertical-align: middle;">59.3</td>
+                <td style="vertical-align: middle;">70.1</td>
+                <td style="vertical-align: middle;">59.2</td>
+                <td style="vertical-align: middle;">74.6</td>
+                <td style="vertical-align: middle;">42.6</td>
+                <td style="vertical-align: middle;">46.2</td>
+                <td style="vertical-align: middle;">40.9</td>
+                <td style="vertical-align: middle;">54.5</td>
+                <td style="vertical-align: middle;">53.2</td>
+                <td style="vertical-align: middle;">55.3</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="vertical-align: middle; text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a href="https://huggingface.co/Salesforce/instructblip-vicuna-7b" class="ext-link" style="font-size: 16px; margin-left: 5px;">InstructBLIP</a>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">8B</td>
+                <td style="vertical-align: middle;">45.6</td>
+                <td style="vertical-align: middle;">64.7</td>
+                <td style="vertical-align: middle;">50.4</td>
+                <td style="vertical-align: middle;">56.2</td>
+                <td style="vertical-align: middle;">32.0</td>
+                <td style="vertical-align: middle;">28.5</td>
+                <td style="vertical-align: middle;">38.1</td>
+                <td style="vertical-align: middle;">54.8</td>
+                <td style="vertical-align: middle;">52.7</td>
+                <td style="vertical-align: middle;">47.0</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="vertical-align: middle; text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a href="https://huggingface.co/HuggingFaceM4/idefics2-8b" class="ext-link" style="font-size: 16px; margin-left: 5px;">Idefics2</a>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">8B</td>
+                <td style="vertical-align: middle;">50.1</td>
+                <td style="vertical-align: middle;">45.3</td>
+                <td style="vertical-align: middle;">49.1</td>
+                <td style="vertical-align: middle;">58.5</td>
+                <td style="vertical-align: middle;">22.5</td>
+                <td style="vertical-align: middle;">27.8</td>
+                <td style="vertical-align: middle;">40.1</td>
+                <td style="vertical-align: middle;">51.0</td>
+                <td style="vertical-align: middle;">53.3</td>
+                <td style="vertical-align: middle;">44.2</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="vertical-align: middle; text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a href="https://huggingface.co/OpenGVLab/InternVL2_5-8B" class="ext-link" style="font-size: 16px; margin-left: 5px;">InternVL2.5</a>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">8B</td>
+                <td style="vertical-align: middle;">62.2</td>
+                <td style="vertical-align: middle;">72.6</td>
+                <td style="vertical-align: middle;">64.6</td>
+                <td style="vertical-align: middle;">78.3</td>
+                <td style="vertical-align: middle;">50.2</td>
+                <td style="vertical-align: middle;">43.8</td>
+                <td style="vertical-align: middle;">41.8</td>
+                <td style="vertical-align: middle;">52.7</td>
+                <td style="vertical-align: middle;">53.6</td>
+                <td style="vertical-align: middle;">57.3</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="vertical-align: middle; text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a href="https://huggingface.co/Qwen/Qwen-VL-Chat" class="ext-link" style="font-size: 16px; margin-left: 5px;">Qwen-VL</a>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">10B</td>
+                <td style="vertical-align: middle;">55.9</td>
+                <td style="vertical-align: middle;">72.9</td>
+                <td style="vertical-align: middle;">59.2</td>
+                <td style="vertical-align: middle;">72.0</td>
+                <td style="vertical-align: middle;">37.2</td>
+                <td style="vertical-align: middle;">29.9</td>
+                <td style="vertical-align: middle;">34.7</td>
+                <td style="vertical-align: middle;">54.3</td>
+                <td style="vertical-align: middle;">54.3</td>
+                <td style="vertical-align: middle;">52.0</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="vertical-align: middle; text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a href="https://huggingface.co/meta-llama/Llama-3.2-11B-Vision-Instruct" class="ext-link" style="font-size: 16px; margin-left: 5px;">Llama-3.2-Vision</a>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">11B</td>
+                <td style="vertical-align: middle;">58.4</td>
+                <td style="vertical-align: middle;">53.5</td>
+                <td style="vertical-align: middle;">52.9</td>
+                <td style="vertical-align: middle;">67.2</td>
+                <td style="vertical-align: middle;">29.8</td>
+                <td style="vertical-align: middle;">27.7</td>
+                <td style="vertical-align: middle;">40.8</td>
+                <td style="vertical-align: middle;">60.7</td>
+                <td style="vertical-align: middle;">56.1</td>
+                <td style="vertical-align: middle;">49.7</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="vertical-align: middle; text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a href="https://huggingface.co/Qwen/Qwen2-VL-72B-Instruct" class="ext-link" style="font-size: 16px; margin-left: 5px;">Qwen2-VL</a>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">72B</td>
+                <td style="vertical-align: middle;">62.8</td>
+                <td style="vertical-align: middle;">80.6</td>
+                <td style="vertical-align: middle;">60.8</td>
+                <td style="vertical-align: middle;">85.5</td>
+                <td style="vertical-align: middle;">37.3</td>
+                <td style="vertical-align: middle;">38.0</td>
+                <td style="vertical-align: middle;">69.3</td>
+                <td style="vertical-align: middle;">53.9</td>
+                <td style="vertical-align: middle;">55.0</td>
+                <td style="vertical-align: middle;">59.8</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="vertical-align: middle; text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a href="https://huggingface.co/Qwen/Qwen2.5-VL-72B-Instruct" class="ext-link" style="font-size: 16px; margin-left: 5px;">Qwen2.5-VL</a>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">72B</td>
+                <td style="vertical-align: middle;">63.7</td>
+                <td style="vertical-align: middle;">81.1</td>
+                <td style="vertical-align: middle;">69.9</td>
+                <td style="vertical-align: middle;">89.3</td>
+                <td style="vertical-align: middle;">51.5</td>
+                <td style="vertical-align: middle;">55.7</td>
+                <td style="vertical-align: middle;">66.4</td>
+                <td style="vertical-align: middle;">50.3</td>
+                <td style="vertical-align: middle;">56.4</td>
+                <td style="vertical-align: middle;">64.3</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="vertical-align: middle; text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a href="https://cloud.google.com/vertex-ai/generative-ai/docs/models/gemini/2-0-flash" class="ext-link" style="font-size: 16px; margin-left: 5px;">Gemini 2.0 Flash</a>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">-</td>
+                <td style="vertical-align: middle;">68.6</td>
+                <td style="vertical-align: middle;">82.1</td>
+                <td style="vertical-align: middle;">75.2</td>
+                <td style="vertical-align: middle;">86.9</td>
+                <td style="vertical-align: middle;">50.3</td>
+                <td style="vertical-align: middle;">52.5</td>
+                <td style="vertical-align: middle;">49.7</td>
+                <td style="vertical-align: middle;">48.0</td>
+                <td style="vertical-align: middle;">49.2</td>
+                <td style="vertical-align: middle;">61.7</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="vertical-align: middle; text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a href="https://openai.com/index/gpt-4o-system-card/" class="ext-link" style="font-size: 16px; margin-left: 5px;">GPT-4o</a>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">-</td>
+                <td style="vertical-align: middle;">71.7</td>
+                <td style="vertical-align: middle;">76.6</td>
+                <td style="vertical-align: middle;">71.3</td>
+                <td style="vertical-align: middle;">89.4</td>
+                <td style="vertical-align: middle;">54.4</td>
+                <td style="vertical-align: middle;">62.7</td>
+                <td style="vertical-align: middle;">58.8</td>
+                <td style="vertical-align: middle;">66.0</td>
+                <td style="vertical-align: middle;">63.3</td>
+                <td style="vertical-align: middle;">67.9</td>
+              </tr>
+
+            </tbody>
+          </table>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
@@ -220,6 +658,7 @@
           <p>
             This website is adapted from
             <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> and
+            <a href="https://github.com/Video-MME/video-mme.github.io">Video-MME</a> and
             licensed under a
             <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
               Creative Commons Attribution-ShareAlike 4.0 International License</a>.
